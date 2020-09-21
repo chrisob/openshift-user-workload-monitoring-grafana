@@ -34,8 +34,14 @@ and `prom-label-proxy` enforce namespace permissions):
 
 ## Install
 
-Edit all of the `kustomization.yaml` files in the `overlay` directory and adapt
-the namespaces to match your application and monitoring namespace.
+Edit these `kustomization.yaml` files in the `overlay` directory to change the
+target namespaces to match your application and monitoring namespace:
+- `overlay/grafana.kustomization.yaml`
+  - The namespace which you want Grafana installed to (`app-monitoring`)
+  - Your target application's namespace (`ns1`)
+  - Grafana's exposed Route hostname (`grafana.apps.my-cluster.company.com`)
+- `overlay/rbac/kustomization.yaml`
+  - Your application's namespace which Grafana will query metrics for (`ns1`)
 
 This POC doesn't include any Grafana dashboards, so you'll have to patch your
 own in to a configmap and the Grafana deployment.
