@@ -48,8 +48,8 @@ target namespaces to match your application and monitoring namespace:
 - `overlay/rbac/kustomization.yaml`
   - Your application's namespace which Grafana will query metrics for (`ns1`)
 
-This POC doesn't include any Grafana dashboards, so you'll have to patch your
-own in to a configmap and the Grafana deployment.
+**Note,** this POC doesn't include any Grafana dashboards, so you'll have to
+patch your own in to a configmap and the Grafana deployment.
 
 
 [user-workload-monitoring]:https://docs.openshift.com/container-platform/4.5/monitoring/monitoring-your-own-services.html
