@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base/grafana
+namespace: app-monitoring
+configMapGenerator:
+  - name: grafana-env-vars
+    behavior: merge
+    literals:
+      # Namespace which grafana should monitor
+      - TARGET_NAMESPACE=ns1
+patches:
+  - patch: |
+      apiVersion: route.openshift.io/v1
+      kind: Route
+      metadata:
+        name: grafana
+      spec:
+        host: grafana.apps.my-cluster.company.com
