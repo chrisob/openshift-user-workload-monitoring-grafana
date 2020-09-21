@@ -21,7 +21,7 @@ scraping and alerting is provided out-of-the-box, most of the
 applications/operators I support still need a friendly dashboard to take up
 screen real-estate :grin:.
 
-## How?
+## How does it work?
 
 These manifests assume that Grafana should be installed into a different
 namespace from your target application. In other words, Grafana will be deployed
