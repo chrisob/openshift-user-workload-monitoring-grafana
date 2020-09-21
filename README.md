@@ -4,6 +4,10 @@ This repo contains a Kustomize base and example overlay which deploys a
 proof-of-concept Grafana instance which is configured to "plug-in" to OpenShift
 Container Platform's [user workload monitoring stack][user-workload-monitoring].
 
+This isn't quite production-ready, but if somebody were to go through and fix
+the `TODO`s _and_ figure out a graceful way to ensure the manifests and image
+tags still work with future OCP versions, it should be pretty solid.
+
 The generated manifests have been tested against OpenShift Container Platform
 v4.5.8. Breaking changes in higher versions may also break this Grafana
 instance.
@@ -38,7 +42,7 @@ and `prom-label-proxy` enforce namespace permissions):
 
 ## Install
 
-Edit these `kustomization.yaml` files in the `overlay` directory to change the
+Edit these `kustomization.yaml` files in the `overlay` directory and change the
 target namespaces to match your application and monitoring namespace:
 - `overlay/grafana.kustomization.yaml`
   - The namespace which you want Grafana installed to (`app-monitoring`)
