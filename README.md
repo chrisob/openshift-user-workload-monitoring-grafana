@@ -24,8 +24,13 @@ deployed to the `app-monitoring` namespace and will be given permission to query
 metrics scraped from the `ns1` namespace.
 
 Puzzle pieces which comprise this example:
-- [OpenShift OAuth proxy][oauth-proxy]
-- [OpenShift Service Serving Signer][service-signer]
+- [OpenShift OAuth proxy][oauth-proxy], see:
+  - `base/grafana/deployment.yaml`
+  - `base/grafana/rbac.yaml`
+  - `base/grafana/files/grafana.ini`
+- [OpenShift Service Serving Signer][service-signer], see:
+  - `base/grafana/service.yaml`
+  - `base/grafana/tls-bundle-configmap.yaml`
 
 It's also important to understand how RBAC is used to enforce tenancy in
 OpenShift's user workload monitoring stack (specifically how `kube-rbac-proxy`
