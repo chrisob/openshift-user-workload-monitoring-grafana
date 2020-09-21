@@ -44,7 +44,7 @@ spec:
             - -http-address=
             - -email-domain=*
             - -upstream=http://localhost:3001
-            # TODO: reduce needed permissions based on namespace
+            # TODO: reduce needed permissions based on target namespace
             - '-openshift-sar={"resource": "namespaces", "verb": "get"}'
             - '-openshift-delegate-urls={"/": {"resource": "namespaces", "verb": "get"}}'
             - -tls-cert=/etc/tls/private/tls.crt
