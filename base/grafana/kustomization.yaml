@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: user-workload-dashboard
+resources:
+  - deployment.yaml
+  - service.yaml
+  - tls-bundle-configmap.yaml
+  - route.yaml
+  - rbac.yaml
+configMapGenerator:
+  - name: grafana-env-vars
+    literals:
+      # Namespace which grafana should monitor
+      - TARGET_NAMESPACE=my-app-namespace
+  - name: grafana-dashboards
+    files:
+      - files/dashboards.yaml
+secretGenerator:
+  - name: grafana-config
+    files:
+      - files/grafana.ini
+  - name: grafana-datasources
+    files:
+      - files/datasource.yaml
+  - name: grafana-proxy
+    literals:
+      # TODO: if this is really secret, change it :)
+      - session_secret=my-secret

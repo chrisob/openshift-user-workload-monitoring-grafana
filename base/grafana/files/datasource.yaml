@@ -1,0 +1,19 @@
+# Inspired by: https://github.com/grafana/grafana/issues/12556#issuecomment-460388535
+apiVersion: 1
+datasources:
+  - name: prometheus
+    type: prometheus
+    access: proxy
+    isDefault: true
+    basicAuth: false
+    editable: false
+    orgId: 1
+    version: 1
+    url: https://thanos-querier.openshift-monitoring.svc:9092
+    jsonData:
+      tlsSkipVerify: true
+      customQueryParameters: namespace=${TARGET_NAMESPACE}
+      httpHeaderName1: Authorization
+    secureJsonData:
+      # Use SA token to auth: https://grafana.com/docs/grafana/latest/administration/configuration/#file-provider
+      httpHeaderValue1: Bearer $__file{/var/run/secrets/kubernetes.io/serviceaccount/token}

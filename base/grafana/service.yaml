@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  annotations:
+    # Give grafana internal SSL certs: https://docs.openshift.com/container-platform/4.5/security/certificates/service-serving-certificate.html#add-service-certificate_service-serving-certificate
+    service.beta.openshift.io/serving-cert-secret-name: grafana-tls
+  name: grafana
+  labels:
+    app: grafana
+spec:
+  ports:
+    - name: https
+      protocol: TCP
+      port: 3000
+      targetPort: https
+  selector:
+    app: grafana
