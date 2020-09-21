@@ -6,7 +6,8 @@ Container Platform's [user workload monitoring stack][user-workload-monitoring].
 
 This isn't quite production-ready, but if somebody were to go through and fix
 the `TODO`s _and_ figure out a graceful way to ensure the manifests and image
-tags still work with future OCP versions, it should be pretty solid.
+tags still work with future OCP versions, it should be pretty solid. You also
+need to patch in your own dashboards.
 
 The generated manifests have been tested against OpenShift Container Platform
 v4.5.8. Breaking changes in higher versions may also break this Grafana
@@ -26,7 +27,12 @@ namespace from your target application. In other words, Grafana will be deployed
 to the `app-monitoring` namespace and will be given permission to query metrics
 scraped from the `ns1` namespace.
 
-Puzzle pieces which comprise this example:
+It's important to understand how RBAC is used to enforce tenancy in OpenShift's
+user workload monitoring stack (specifically how `kube-rbac-proxy` and
+`prom-label-proxy` enforce namespace permissions):
+- [OpenShift user workload monitoring enhancement proposal][uwm-proposal]
+
+Other puzzle pieces which comprise this example:
 - [OpenShift OAuth proxy][oauth-proxy], see:
   - `base/grafana/deployment.yaml`
   - `base/grafana/rbac.yaml`
@@ -34,11 +40,6 @@ Puzzle pieces which comprise this example:
 - [OpenShift Service Serving Signer][service-signer], see:
   - `base/grafana/service.yaml`
   - `base/grafana/tls-bundle-configmap.yaml`
-
-It's also important to understand how RBAC is used to enforce tenancy in
-OpenShift's user workload monitoring stack (specifically how `kube-rbac-proxy`
-and `prom-label-proxy` enforce namespace permissions):
-- [OpenShift user workload monitoring enhancement proposal][uwm-proposal]
 
 ## Install
 
