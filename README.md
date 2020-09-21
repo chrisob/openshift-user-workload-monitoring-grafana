@@ -15,10 +15,11 @@ instance.
 
 ## Why?
 
-Because the user workload monitoring stack is still an early tech-preview, there
-is no support for user-provided Grafana dashboards. Even though metrics scraping
-and alerting is provided out-of-the-box, most of the applications/operators I
-support still need a friendly dashboard to take up screen real-estate :grin:.
+Because OpenShift's user workload monitoring stack is still a tech-preview,
+there is no support for user-provided Grafana dashboards. Even though metrics
+scraping and alerting is provided out-of-the-box, most of the
+applications/operators I support still need a friendly dashboard to take up
+screen real-estate :grin:.
 
 ## How?
 
