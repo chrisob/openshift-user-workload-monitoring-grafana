@@ -18,10 +18,9 @@ support still need a friendly dashboard to take up screen real-estate :grin:.
 ## How?
 
 These manifests assume that Grafana should be installed into a different
-namespace from your target application. In other words, given the example
-application namespace `ns1` (as used in the example `overlay`), Grafana will be
-deployed to the `app-monitoring` namespace and will be given permission to query
-metrics scraped from the `ns1` namespace.
+namespace from your target application. In other words, Grafana will be deployed
+to the `app-monitoring` namespace and will be given permission to query metrics
+scraped from the `ns1` namespace.
 
 Puzzle pieces which comprise this example:
 - [OpenShift OAuth proxy][oauth-proxy], see:
