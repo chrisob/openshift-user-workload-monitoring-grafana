@@ -55,8 +55,7 @@ spec:
             - -openshift-ca=/etc/pki/tls/cert.pem
             - -openshift-ca=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
             - -skip-auth-regex=^/metrics
-          # TODO: use image tag instead of digest
-          image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:9d19006d184df63f20a91d998bce5b2fb2da4334697a7ac8500d92680f575890
+          image: quay.io/openshift/origin-oauth-proxy:4.5
           name: grafana-proxy
           ports:
             - containerPort: 3000
