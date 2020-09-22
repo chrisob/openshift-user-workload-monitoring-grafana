@@ -21,10 +21,6 @@ spec:
           envFrom:
             - configMapRef:
                 name: grafana-env-vars
-          ports:
-            - containerPort: 3001
-              name: http
-              protocol: TCP
           resources:
             requests:
               cpu: 4m
