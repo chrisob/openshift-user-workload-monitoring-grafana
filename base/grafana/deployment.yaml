@@ -40,9 +40,8 @@ spec:
             - -http-address=
             - -email-domain=*
             - -upstream=http://localhost:3001
-            # TODO: reduce needed permissions based on target namespace
-            - '-openshift-sar={"resource": "namespaces", "verb": "get"}'
-            - '-openshift-delegate-urls={"/": {"resource": "namespaces", "verb": "get"}}'
+            # Require that end-user has permission to get pods in target namespace
+            - '-openshift-sar={"namespace": "$(TARGET_NAMESPACE)", "resource": "pods", "verb": "get"}'
             - -tls-cert=/etc/tls/private/tls.crt
             - -tls-key=/etc/tls/private/tls.key
             - -client-secret-file=/var/run/secrets/kubernetes.io/serviceaccount/token
@@ -54,6 +53,9 @@ spec:
             - -skip-auth-regex=^/metrics
           image: quay.io/openshift/origin-oauth-proxy:4.5
           name: grafana-proxy
+          envFrom:
+            - configMapRef:
+                name: grafana-env-vars
           ports:
             - containerPort: 3000
               name: https
