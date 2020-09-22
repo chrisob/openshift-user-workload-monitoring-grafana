@@ -46,7 +46,8 @@ spec:
             - -tls-cert=/etc/tls/private/tls.crt
             - -tls-key=/etc/tls/private/tls.key
             - -client-secret-file=/var/run/secrets/kubernetes.io/serviceaccount/token
-            - -cookie-secret-file=/etc/proxy/secrets/session_secret
+            # Instead of creating a separate session secret, use SA's token as symmetric key to encrypt cookies
+            - -cookie-secret-file=/var/run/secrets/kubernetes.io/serviceaccount/token
             - -openshift-service-account=grafana
             - -openshift-ca=/etc/pki/tls/cert.pem
             - -openshift-ca=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
@@ -73,8 +74,6 @@ spec:
           volumeMounts:
             - mountPath: /etc/tls/private
               name: secret-grafana-tls
-            - mountPath: /etc/proxy/secrets
-              name: secret-grafana-proxy
             - mountPath: /etc/pki/ca-trust/extracted/pem/
               name: grafana-trusted-ca-bundle
               readOnly: true
@@ -100,10 +99,6 @@ spec:
           secret:
             defaultMode: 420
             secretName: grafana-tls
-        - name: secret-grafana-proxy
-          secret:
-            defaultMode: 420
-            secretName: grafana-proxy
         - configMap:
             defaultMode: 420
             items:

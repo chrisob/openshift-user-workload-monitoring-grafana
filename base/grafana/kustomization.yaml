@@ -22,7 +22,3 @@ secretGenerator:
   - name: grafana-datasources
     files:
       - files/datasource.yaml
-  - name: grafana-proxy
-    literals:
-      # TODO: if this is really secret, change it :)
-      - session_secret=my-secret
