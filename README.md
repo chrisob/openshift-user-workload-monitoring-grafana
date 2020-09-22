@@ -34,7 +34,8 @@ user workload monitoring stack (specifically how `kube-rbac-proxy` and
 - [OpenShift user workload monitoring enhancement proposal][uwm-proposal]
 
 Other puzzle pieces which comprise this example:
-- [OpenShift OAuth proxy][oauth-proxy], see:
+- [OpenShift OAuth proxy][oauth-proxy], inspired by [this
+  example][oauth-example]. See:
   - `base/grafana/deployment.yaml`
   - `base/grafana/rbac.yaml`
   - `base/grafana/files/grafana.ini`
@@ -59,5 +60,6 @@ patch your own in to a configmap and the Grafana deployment.
 
 [user-workload-monitoring]:https://docs.openshift.com/container-platform/4.5/monitoring/monitoring-your-own-services.html
 [oauth-proxy]:https://github.com/openshift/oauth-proxy
+[oauth-example]:https://github.com/openshift/oauth-proxy/blob/e107eeed43417b3f37f8ae958d4bcb5d2955b8a2/contrib/sidecar.yaml
 [service-signer]:https://docs.openshift.com/container-platform/4.5/security/certificates/service-serving-certificate.html
 [uwm-proposal]:https://github.com/openshift/enhancements/blob/master/enhancements/monitoring/user-workload-monitoring.md
